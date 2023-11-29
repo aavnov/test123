@@ -1,0 +1,100 @@
+					IMAGE
+
+docker build -t hello-world .   # создание image
+
+docker images                   # просмотр images
+
+docker rmi feb5d9fea6a5         # удаление image
+docker rmi $(docker images)
+docker rmi --force hello-world  # форсированное удаление image
+
+
+					IMAGE and CONTEINER
+
+docker run hello-world              # запуск image без имени контейнера
+docker run --name hello hello-world # запуск image с   именем контейнера
+docker run --name hello -d hello-world # запуск image в фоне с именем контейнера
+docker run --name hello -d --rm hello-world # запуск image в фоне с именем контейнера
+
+
+
+					CONTEINER
+
+docker ps # список работающих контейнеров
+
+docker ps -a # список контейнеров, в том числе остановленные
+
+docker stop <containerId/Name> # остановка контейнера
+
+docker stop $(docker ps -aq) # остановка всех контейнеров
+
+docker rm hello-world:latest # удаление контейнера
+
+docker rm -f <containerId/Name> # форсированное удаление контейнера
+
+docker rm $(docker ps -aq) # удаление всех контейнеров
+
+docker stop hello # остановка контейнера с именем hello
+
+
+
+
+docker-compose up --build
+ss -tunlp | grep :5432
+sudo ss -ltpn | grep 5432
+docker-compose stop
+
+
+
+
+
+docker rmi $(docker images)
+//////////////////////////////////////////////////
+sudo ss -ltpn | grep 8080
+sudo ss -ltpn | grep 9090
+sudo ss -ltpn | grep 5432
+
+sudo docker stop $(docker ps -aq) # остановка всех контейнеров
+sudo docker rm $(docker ps -aq) # удаление всех контейнеров
+/////////////////////////////////////////////////
+docker run --name db-conteiner -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -e POSTGRES_DB=shareit -d postgres:13.7-alpine
+//////////////////////////////////////////////////
+
+sudo chmod a+rwx /var/run/docker.sock
+sudo chmod a+rwx /var/run/docker.pid
+
+
+ - TZ=Europe/Moscow
+
+
+
+
+
+
+
+
+docker exec -it db-conteiner /bin/sh 
+psql --username=root --dbname=shareit
+////////////////////////////////////////////////
+postgres=# -- list all tables:
+postgres=# \d
+
+postgres=# -- describe table:
+postgres=# \d bookings
+
+postgres=# \q --exit
+
+\connect DBNAME
+
+List of databases \l
+
+
+docker stop $(docker ps -aq) # остановка всех контейнеров
+docker rm $(docker ps -aq) # удаление всех контейнеров
+
+
+
+kubectl get all -o wide -A
+
+
+
